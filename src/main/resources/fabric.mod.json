@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "freecam",
+  "version": "${version}",
+  "name": "Freecam Builder",
+  "description": "Kamera bebas dengan kemampuan pasang dan hancurkan blok.",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.freecam.Freecam"],
+    "client": ["com.freecam.FreecamClient"]
+  },
+  "mixins": ["freecam.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": "~1.18.2",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
