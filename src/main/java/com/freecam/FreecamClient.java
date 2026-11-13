@@ -139,6 +139,12 @@ public class FreecamClient implements ClientModInitializer {
         options.attackKey.setPressed(false);
         options.useKey.setPressed(false);
 
+        // Abaikan perintah buang item selama freecam
+        while (options.dropKey.wasPressed()) {
+            // sengaja kosong
+        }
+        options.dropKey.setPressed(false);
+
         if (client.currentScreen == null && target != null) {
             if (attack) {
                 PacketByteBuf buf = PacketByteBufs.create();
