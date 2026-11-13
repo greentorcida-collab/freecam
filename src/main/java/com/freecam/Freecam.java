@@ -20,7 +20,7 @@ public class Freecam implements ModInitializer {
             (server, player, handler, buf, responseSender) -> {
                 BlockPos pos = buf.readBlockPos();
                 server.execute(() -> {
-                    ServerWorld world = player.getServerWorld();
+                    ServerWorld world = (ServerWorld) player.world;
                     if (!world.isInBuildLimit(pos) || !world.isChunkLoaded(pos)) {
                         return;
                     }
@@ -36,7 +36,7 @@ public class Freecam implements ModInitializer {
             (server, player, handler, buf, responseSender) -> {
                 BlockHitResult hit = buf.readBlockHitResult();
                 server.execute(() -> {
-                    ServerWorld world = player.getServerWorld();
+                    ServerWorld world = (ServerWorld) player.world;
                     BlockPos pos = hit.getBlockPos();
                     if (!world.isInBuildLimit(pos) || !world.isChunkLoaded(pos)) {
                         return;
