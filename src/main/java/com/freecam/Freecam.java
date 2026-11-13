@@ -5,6 +5,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
@@ -42,7 +44,11 @@ public class Freecam implements ModInitializer {
                         return;
                     }
                     ItemStack stack = player.getMainHandStack();
-                    player.interactionManager.interactBlock(player, world, stack, Hand.MAIN_HAND, hit);
+                    ActionResult result = player.interactionManager
+                        .interactBlock(player, world, stack, Hand.MAIN_HAND, hit);
+                    if (!result.isAccepted()) {
+                        player.sendMessage(new LiteralText("Gagal pasang: " + result), true);
+                    }
                 });
             });
     }
